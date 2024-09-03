@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Drovox</string>
+    <string name="daily_notifications">Daily Notifications</string>
+    <string name="daily_notification_channel_id">daily_notification_channel</string>
+    <string name="_9am_daily_notification_channel_description">9AM daily notification channel</string>
+    <string name="msg_9_o_clock">9 O\'Clock</string>
+    <string name="msg_rise_and_shine">Rise and shine!</string>
+</resources>
