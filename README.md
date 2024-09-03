@@ -15,7 +15,7 @@
 
 |            |            |            |            |
 |------------|------------|------------|------------|
-| ![img one](image_1.JPG) | ![img two](image_2.JPG) | ![img three](image_3.JPG) | ![img four](image_4.JPG) |
+| ![img one](image_1.jpg) | ![img two](image_2.jpg) | ![img three](image_3.jpg) | ![img four](image_4.jpg) |
 
 ## Configurations
 - Minimum SDK level 26
