@@ -6,7 +6,7 @@
   <a href="https://www.android.com/"><img alt="Platform" src="https://img.shields.io/badge/Platform-Android-green"/></a>
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=26"><img alt="API" src="https://img.shields.io/badge/API-26%2B-yellow.svg?style=flat"/></a>
-  <a href="https://github.com/drovox/actions"><img alt="Build Status" src="https://github.com/drovox/workflows/Build/badge.svg"/></a> 
+   <a href="https://github.com/abdulwahabhassan/drovox/actions"><img alt="Build Status" src="https://github.com/abdulwahabhassan/drovox/workflows/Build/badge.svg"/></a> 
 </p>
 
 <p align="center">Drovox lets you see your location, add, remove and search markers with a daily 9 AM reminder to rise and shine!</p>
