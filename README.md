@@ -9,6 +9,14 @@
   <a href="https://github.com/drovox/actions"><img alt="Build Status" src="https://github.com/drovox/workflows/Build/badge.svg"/></a> 
 </p>
 
+<p align="center">Drovox lets you see your location, add, remove and search markers with a daily 9 AM reminder to rise and shine!</p>
+
+## Preview
+
+|            |            |            |            |
+|------------|------------|------------|------------|
+| ![img one](image_1.JPG) | ![img two](image_2.JPG) | ![img three](image_3.JPG) | ![img four](image_4.JPG) |
+
 ## Configurations
 - Minimum SDK level 26
 - Compile SDK version 34
