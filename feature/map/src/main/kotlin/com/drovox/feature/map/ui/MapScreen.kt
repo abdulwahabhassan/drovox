@@ -336,7 +336,7 @@ internal fun MapScreen(
         title = "Location Info",
         showDialog = uiState.showSelectedLocationInfoDialog,
         onDismissIconClick = {
-            onUiEvent(MapScreenUiEvent.OnDismissLocationInfo)
+            onUiEvent(MapScreenUiEvent.OnDismissLocationInfoDialog)
         },
         icon = {
             Icon(

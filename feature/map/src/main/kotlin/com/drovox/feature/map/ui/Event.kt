@@ -10,7 +10,7 @@ internal interface MapScreenUiEvent {
     data class OnMarkerSelected(val marker: LocationMarkerEntity) : MapScreenUiEvent
     data class OnLocationClicked(val latitude: Double, val longitude: Double) : MapScreenUiEvent
     data class OnPointOfInterestClick(val poi: PointOfInterest) : MapScreenUiEvent
-    object OnDismissLocationInfo : MapScreenUiEvent
+    object OnDismissLocationInfoDialog : MapScreenUiEvent
     data class OnRemoveMarker(val location: LocationMarkerEntity) : MapScreenUiEvent
     data class OnAddMarker(val location: LocationMarkerEntity) : MapScreenUiEvent
     data class OnDeviceLocationSelected(val location: DeviceLocationEntity): MapScreenUiEvent

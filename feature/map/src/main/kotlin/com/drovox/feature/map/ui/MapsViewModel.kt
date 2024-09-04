@@ -67,8 +67,14 @@ internal class MapsViewModel @Inject constructor(
                 }
             }
 
-            MapScreenUiEvent.OnDismissLocationInfo -> {
-                setUiState { copy(showSelectedLocationInfoDialog = false, selectedLocation = null) }
+            MapScreenUiEvent.OnDismissLocationInfoDialog -> {
+                setUiState {
+                    copy(
+                        showSelectedLocationInfoDialog = false,
+                        selectedLocation = null,
+                        selectedLocationPlaceDetails = null
+                    )
+                }
             }
 
             is MapScreenUiEvent.OnPointOfInterestClick -> {
@@ -82,8 +88,7 @@ internal class MapsViewModel @Inject constructor(
                             latitude = event.poi.latLng.latitude,
                             longitude = event.poi.latLng.longitude,
                             marked = false,
-
-                            )
+                        )
                     )
                 }
                 loadPlaceDetails(event.poi.placeId)
@@ -103,6 +108,7 @@ internal class MapsViewModel @Inject constructor(
                         )
                     )
                 }
+                event.marker.placeId?.let { loadPlaceDetails(it) }
             }
 
             is MapScreenUiEvent.OnDeviceLocationSelected -> {
