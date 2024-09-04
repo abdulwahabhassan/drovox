@@ -13,9 +13,9 @@
 
 ## Preview
 
-|            |            |            |            |            |
-|------------|------------|------------|------------|------------|
-| ![img one](image_1.jpg) | ![img two](image_2.jpg) | ![img three](image_3.jpg) | ![img four](image_4.jpg) | ![img four](image_5.jpg) |
+|            |            |            |            |            |            |
+|------------|------------|------------|------------|------------|------------|
+| ![img one](image_1.jpg) | ![img two](image_2.jpg) | ![img three](image_3.jpg) | ![img four](image_4.jpg) | ![img five](image_5.jpg) | ![img six](image_6.jpg) |
 
 ## Configurations
 - Minimum SDK level 26
