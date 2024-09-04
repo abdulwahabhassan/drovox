@@ -91,6 +91,7 @@ hiltCommon = "1.2.0"
 hiltWork = "1.2.0"
 composeMaps = "2.7.2"
 timber = "5.0.1"
+places = "3.3.0"
 
 [libraries]
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
@@ -200,6 +201,7 @@ lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" 
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 org-apache-commons-lang = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commonsLang3" }
+places = { group = "com.google.android.libraries.places", name = "places", version.ref = "places"}
 play-services-basement = { group = "com.google.android.gms", name = "play-services-basement", version.ref = "playServicesBasement" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 protobuf-kotlin-lite = { group = "com.google.protobuf", name = "protobuf-kotlin-lite", version.ref = "protobuf" }

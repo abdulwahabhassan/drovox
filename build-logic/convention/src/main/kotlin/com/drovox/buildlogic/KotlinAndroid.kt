@@ -7,7 +7,6 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
@@ -21,6 +20,7 @@ internal fun Project.configureKotlinAndroid(
         apply("org.jetbrains.kotlin.kapt")
         apply("dagger.hilt.android.plugin")
         apply("kotlinx-serialization")
+        apply("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     }
 
     commonExtension.apply {
@@ -30,6 +30,7 @@ internal fun Project.configureKotlinAndroid(
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             vectorDrawables.useSupportLibrary = true
         }
+
         buildFeatures {
             buildConfig = true
             viewBinding = true
@@ -50,7 +51,6 @@ internal fun Project.configureKotlinAndroid(
                 excludes.add("/META-INF/{AL2.0,LGPL2.1}")
             }
         }
-
         extensions.configure<KotlinAndroidProjectExtension> {
             jvmToolchain(17)
         }

@@ -5,6 +5,7 @@ import com.drovox.core.model.entity.LocationMarkerEntity
 
 fun LocationMarkerEntity.toLocalData(): LocationMarkerLocalData = LocationMarkerLocalData(
     id = id ?: 0,
+    placeId = placeId,
     name = name,
     longitude = longitude,
     latitude = latitude,

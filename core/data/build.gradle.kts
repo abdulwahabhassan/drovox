@@ -4,6 +4,10 @@ plugins {
 
 android {
     namespace = "com.drovox.core.data"
+    secrets {
+        propertiesFileName = "secrets.properties"
+        defaultPropertiesFileName = "local.defaults.properties"
+    }
 }
 
 dependencies {

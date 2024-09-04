@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -45,6 +46,9 @@ import com.drovox.core.design.icon.DrovoxIcons
 import com.drovox.core.design.theme.DecorativeColor
 import com.drovox.core.design.theme.DrovoxTheme
 import com.drovox.core.model.entity.DeviceLocationEntity
+import com.drovox.core.model.entity.DisplayNameEntity
+import com.drovox.core.model.entity.LocationMarkerEntity
+import com.drovox.core.model.entity.PlaceDetailsEntity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
@@ -314,8 +318,23 @@ internal fun MapScreen(
     }
 
     DrovoxCenterDialog(
+        title = "Alert",
+        showDialog = uiState.showAlertDialog,
+        subtitle = uiState.alertDialogMessage,
+        icon = {
+            Icon(
+                modifier = Modifier.size(32.dp),
+                imageVector = DrovoxIcons.Warning,
+                contentDescription = "Alert icon",
+                tint = DecorativeColor.yellow,
+            )
+        },
+        positiveActionText = "Okay",
+    )
+
+    DrovoxCenterDialog(
         title = "Location Info",
-        showDialog = uiState.showLocationInfoDialog,
+        showDialog = uiState.showSelectedLocationInfoDialog,
         onDismissIconClick = {
             onUiEvent(MapScreenUiEvent.OnDismissLocationInfo)
         },
@@ -323,12 +342,13 @@ internal fun MapScreen(
             Icon(
                 imageVector = DrovoxIcons.Location,
                 contentDescription = null,
-                tint = DecorativeColor.red02
+                tint = DecorativeColor.red
             )
         },
         extraContent = {
             Column(
-                verticalArrangement = Arrangement.spacedBy(24.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Box(
                     modifier = Modifier
@@ -344,11 +364,83 @@ internal fun MapScreen(
                     Text(
                         text = uiState.selectedLocation?.name?.ifBlank { "Lat: ${uiState.selectedLocation.latitude}\nLong: ${uiState.selectedLocation.longitude}" }
                             ?: "",
-                        style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.tertiary),
+                        style = MaterialTheme.typography.labelLarge.copy(color = MaterialTheme.colorScheme.primary),
                         textAlign = TextAlign.Center
                     )
                 }
 
+                if (uiState.isLoadingSelectedLocationPlaceDetails) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(24.dp),
+                            color = MaterialTheme.colorScheme.primary,
+                            strokeWidth = 2.dp,
+                            strokeCap = StrokeCap.Round,
+                            trackColor = MaterialTheme.colorScheme.onPrimary
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "Loading place details... ",
+                            style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.tertiary),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                } else {
+                    uiState.selectedLocationPlaceDetails?.let { placeDetails: PlaceDetailsEntity ->
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.primaryContainer,
+                                    shape = MaterialTheme.shapes.medium
+                                )
+                                .padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            placeDetails.primaryTypeDisplayName?.text?.let {
+                                Text(
+                                    text = placeDetails.primaryTypeDisplayName?.text.toString(),
+                                    style = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.tertiary),
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+
+                            placeDetails.rating?.let { rating: Double ->
+                                placeDetails.userRatingCount?.let { userRatingCount: Long ->
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(
+                                            modifier = Modifier.size(16.dp),
+                                            imageVector = DrovoxIcons.Star,
+                                            contentDescription = null,
+                                            tint = DecorativeColor.yellow
+                                        )
+                                        Text(
+                                            text = "$rating (${userRatingCount})",
+                                            style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.tertiary),
+                                            textAlign = TextAlign.Center
+                                        )
+                                    }
+                                }
+                            }
+
+                            placeDetails.formattedAddress?.let { address: String ->
+                                Spacer(modifier = Modifier.height(12.dp))
+                                Text(
+                                    text = address,
+                                    style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.tertiary),
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+
+
+                        }
+                    }
+                }
                 uiState.selectedLocation?.let {
                     if (it.marked.not()) {
                         DrovoxOutlinedButton(
@@ -368,7 +460,6 @@ internal fun MapScreen(
                         )
                     }
                 }
-
             }
         }
     )
@@ -379,7 +470,30 @@ internal fun MapScreen(
 private fun MapScreenPreview() {
     DrovoxTheme {
         MapScreen(
-            uiState = MapScreenUiState(isLoading = true),
+            uiState = MapScreenUiState(
+                isLoading = true,
+                showSelectedLocationInfoDialog = true,
+                isLoadingSelectedLocationPlaceDetails = false,
+                selectedLocation = LocationMarkerEntity(
+                    12,
+                    "Jnsnsnwu723kmn2D",
+                    "Tasty Eatery",
+                    121.3992,
+                    89.002,
+                    false,
+                ),
+                selectedLocationPlaceDetails = PlaceDetailsEntity(
+                    id = "ChIJs5ydyTiuEmsR0fRSlU0C7k0",
+                    formattedAddress = "29 King St, Sydney NSW 2000, Australia",
+                    rating = 4.00,
+                    userRatingCount = 23,
+                    displayName = DisplayNameEntity(text = "Tasty Restaurant", languageCode = "en"),
+                    DisplayNameEntity(text = "Restaurant", languageCode = "en"),
+                    shortFormattedAddress = "29 King St, Sydney",
+                    reviews = emptyList(),
+                    photos = emptyList()
+                )
+            ),
             onUiEvent = {}
         )
     }

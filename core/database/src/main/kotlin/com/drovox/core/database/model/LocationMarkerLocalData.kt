@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey
 data class LocationMarkerLocalData(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val placeId: String?,
     val name: String,
     val longitude: Double,
     val latitude: Double,

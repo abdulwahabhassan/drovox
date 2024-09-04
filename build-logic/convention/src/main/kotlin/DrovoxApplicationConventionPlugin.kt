@@ -14,8 +14,6 @@ class DrovoxApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply {
                 apply("com.android.application")
-                apply("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-
             }
             extensions.configure<ApplicationExtension> {
                 defaultConfig.targetSdk = 34

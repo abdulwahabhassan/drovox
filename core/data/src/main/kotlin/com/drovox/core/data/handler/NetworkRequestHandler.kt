@@ -1,6 +1,5 @@
 package com.drovox.core.data.handler
 
-import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext

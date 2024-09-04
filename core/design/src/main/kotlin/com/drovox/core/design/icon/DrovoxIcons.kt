@@ -44,6 +44,7 @@ import androidx.compose.material.icons.rounded.SettingsInputAntenna
 import androidx.compose.material.icons.rounded.SignalCellularAlt
 import androidx.compose.material.icons.rounded.SignalCellularOff
 import androidx.compose.material.icons.rounded.SouthWest
+import androidx.compose.material.icons.rounded.StarRate
 import androidx.compose.material.icons.rounded.Sync
 import androidx.compose.material.icons.rounded.Token
 import androidx.compose.material.icons.rounded.Visibility
@@ -64,4 +65,5 @@ object DrovoxIcons {
     val DeviceLocation = R.drawable.ic_device_location
     val MarkerLocation = R.drawable.ic_marker_location
     val MyLocation = Icons.Rounded.MyLocation
+    val Star = Icons.Rounded.StarRate
 }

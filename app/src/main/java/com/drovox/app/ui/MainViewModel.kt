@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class MainViewModel @Inject constructor(
-    private val dataStore: UserPreferencesDataStore,
     private val updateLocationUseCase: UpdateDeviceLocationUseCase,
 ) :
     BaseViewModel<MainScreenEvent, MainScreenState, MainScreenOneShotState>(

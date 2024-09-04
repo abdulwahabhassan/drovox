@@ -27,11 +27,6 @@ android {
         versionName = "1.0.0"
     }
 
-    secrets {
-        propertiesFileName = "secrets.properties"
-        defaultPropertiesFileName = "local.defaults.properties"
-    }
-
     signingConfigs {
         create("app-signing-config") {
             keyAlias = keystoreProperties["keyAlias"] as String

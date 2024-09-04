@@ -2,8 +2,6 @@ package com.drovox.feature.map.ui
 
 import com.drovox.core.model.entity.DeviceLocationEntity
 import com.drovox.core.model.entity.LocationMarkerEntity
-import com.drovox.feature.map.model.LocationEntity
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.PointOfInterest
 
 internal interface MapScreenUiEvent {

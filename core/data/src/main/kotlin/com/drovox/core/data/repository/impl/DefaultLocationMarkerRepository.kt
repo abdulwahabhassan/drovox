@@ -9,7 +9,7 @@ import com.drovox.core.database.dao.LocationMarkerDao
 import com.drovox.core.database.model.LocationMarkerLocalData
 import com.drovox.core.model.entity.LocationMarkerEntity
 import com.drovox.core.network.connectivity.NetworkMonitor
-import com.drovox.core.network.service.DrovoxApiService
+import com.drovox.core.network.service.GooglePlacesApiService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -17,11 +17,6 @@ import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 class DefaultLocationMarkerRepository @Inject constructor(
-    @IODispatcher private val ioDispatcher: CoroutineDispatcher,
-    private val networkMonitor: NetworkMonitor,
-    private val json: Json,
-    private val drovoxApiService: DrovoxApiService,
-    private val dataStore: UserPreferencesDataStore,
     private val locationMarkerDao: LocationMarkerDao,
 ) : LocationMarkerRepository {
     override suspend fun addLocationMarker(locationMarker: LocationMarkerEntity) {
