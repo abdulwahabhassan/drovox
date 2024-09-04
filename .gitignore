@@ -44,6 +44,9 @@ _sandbox
 # Android Studio captures folder
 captures/
 
+# Secrets file
+secrets.properties
+
 # defaults
 /local.properties
 /.idea/caches
